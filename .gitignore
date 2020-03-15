@@ -1,4 +1,8 @@
 /.gradle
+/client/build
+/server/build
+/shared/build
+/build
 /.idea
 *.iws
 *.iml
