@@ -4,5 +4,6 @@
 /shared/build
 /build
 /.idea
+/stale_outputs_checked
 *.iws
 *.iml
