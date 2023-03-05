@@ -1,6 +1,6 @@
 import com.soywiz.korge.gradle.*
 
-apply<KorgeGradlePlugin>()
+apply<com.soywiz.korge.gradle.KorgeGradlePlugin>()
 
 korge {
     id = "com.sample.clientserver"
