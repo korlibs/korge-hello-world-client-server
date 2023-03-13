@@ -1,3 +1,8 @@
 import com.soywiz.korge.gradle.*
 
-apply<KorgeGradlePlugin>()
+apply<KorgeLibraryGradlePlugin>()
+
+korge {
+    targetJvm()
+    targetJs()
+}
