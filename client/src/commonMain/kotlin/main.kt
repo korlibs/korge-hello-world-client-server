@@ -1,11 +1,11 @@
-import com.soywiz.korge.*
-import com.soywiz.korge.scene.*
-import com.soywiz.korge.view.*
-import com.soywiz.korim.color.*
-import com.soywiz.korlibs.samples.clientserver.*
+import korlibs.samples.clientserver.mySharedString
+import korlibs.korge.*
+import korlibs.korge.scene.*
+import korlibs.korge.view.*
+import korlibs.image.color.*
 
 //suspend fun main() = Korge(width = 512, height = 512, bgcolor = Colors["#2b2b2b"]) {
-suspend fun main() = Korge(bgcolor = Colors["#2b2b2b"]) {
+suspend fun main() = Korge(bgcolor = Colors["#2b2b2b"]).start {
     sceneContainer().changeTo({ MyMainScene() })
 }
 

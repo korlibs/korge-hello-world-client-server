@@ -1,4 +1,4 @@
-import com.soywiz.korge.gradle.*
+import korlibs.korge.gradle.*
 
 apply<KorgeLibraryGradlePlugin>()
 
