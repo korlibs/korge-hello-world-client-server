@@ -8,3 +8,5 @@
 *.iws
 *.iml
 /kotlin-js-store
+/deps
+/modules

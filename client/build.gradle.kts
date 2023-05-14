@@ -1,6 +1,6 @@
-import com.soywiz.korge.gradle.*
+import korlibs.korge.gradle.*
 
-apply<com.soywiz.korge.gradle.KorgeGradlePlugin>()
+apply<korlibs.korge.gradle.KorgeGradlePlugin>()
 
 korge {
     id = "com.sample.clientserver"
@@ -10,4 +10,8 @@ korge {
 
 dependencies {
     add("commonMainImplementation", project(":shared"))
+}
+
+dependencies {
+    add("commonMainApi", project(":deps"))
 }
