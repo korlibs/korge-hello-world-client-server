@@ -3,7 +3,7 @@
 ## Launch the client:
 
 ```
-./gradlew :client:runJvm
+./gradlew :client:runJvmAutoreload
 ```
 
 ## Launch the server:

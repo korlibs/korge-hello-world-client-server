@@ -58,12 +58,12 @@ data class VirtualButtonConfig(
 fun Container.virtualController(
     sticks: List<VirtualStickConfig> = listOf(VirtualStickConfig.MAIN),
     buttons: List<VirtualButtonConfig> = listOf(VirtualButtonConfig.SOUTH),
-    buttonRadius: Float = 92f,
-    boundsRadiusScale: Float = 1.25f
+    buttonRadius: Number = 92,
+    boundsRadiusScale: Number = 1.25
 ): VirtualController {
     val container = container()
     val controller = VirtualController(container)
-    val boundsRadiusScaled = buttonRadius * boundsRadiusScale
+    val boundsRadiusScaled = buttonRadius.toDouble() * boundsRadiusScale.toDouble()
     val rect = Rectangle.fromBounds(boundsRadiusScaled, boundsRadiusScaled, width - boundsRadiusScaled, height - boundsRadiusScaled)
     val virtualStickViews = arrayListOf<VirtualStickView>()
     val virtualButtonViews = arrayListOf<VirtualButtonView>()
@@ -88,7 +88,7 @@ fun Container.virtualController(
     }
     for (stick in sticks) {
         val virtualStickView =
-            VirtualStickView(controller = controller, config = stick, radius = buttonRadius)
+            VirtualStickView(controller = controller, config = stick, radius = buttonRadius.toDouble())
                 .xy(stick.computePos(rect))
 
         stickByButton[stick.lx] = virtualStickView
@@ -103,7 +103,7 @@ fun Container.virtualController(
         )
     }
     for (button in buttons) {
-        val virtualButtonView = VirtualButtonView(controller = controller, config = button, radius = buttonRadius)
+        val virtualButtonView = VirtualButtonView(controller = controller, config = button, radius = buttonRadius.toDouble())
             .xy(button.computePos(rect))
 
         virtualButtonViews += virtualButtonView
@@ -242,11 +242,11 @@ class VirtualController(
 class VirtualStickView(
     val controller: VirtualController,
     val config: VirtualStickConfig,
-    radius: Float = 64f
+    radius: Double = 64.0
 ) : Container() {
-    val circleOut = fastEllipse(Size(radius * 1.5f, radius * 1.5f)).anchor(Anchor.CENTER).also { it.alpha = 0.5f }
-    val circle = fastEllipse(Size(radius, radius)).anchor(Anchor.CENTER).also { it.alpha = 0.75f }
-    var radius: Float
+    val circleOut = fastEllipse(Size(radius * 1.5f, radius * 1.5f)).anchor(Anchor.CENTER).also { it.alpha = 0.5 }
+    val circle = fastEllipse(Size(radius, radius)).anchor(Anchor.CENTER).also { it.alpha = 0.75 }
+    var radius: Double
         get() = circle.radius.width
         set(value) {
             circle.radius = Size(value, value)
@@ -262,8 +262,8 @@ class VirtualStickView(
         val magnitudeScale = (pos.magnitude / radius).clamp01()
         val scaledPolar = polar * magnitudeScale
         circle.pos = scaledPolar * radius
-        controller[config.lx] = scaledPolar.x
-        controller[config.ly] = scaledPolar.y
+        controller[config.lx] = scaledPolar.x.toFloat()
+        controller[config.ly] = scaledPolar.y.toFloat()
     }
 
     init {
@@ -285,14 +285,14 @@ class VirtualStickView(
 class VirtualButtonView(
     val controller: VirtualController,
     val config: VirtualButtonConfig,
-    radius: Float = 64f
+    radius: Double = 64.0
 ) : Container() {
-    val circle = fastEllipse(Size(radius, radius)).anchor(Anchor.CENTER).also { it.alpha = 0.8f }
-    var radius: Float by circle::radiusAvg
+    val circle = fastEllipse(Size(radius, radius)).anchor(Anchor.CENTER).also { it.alpha = 0.8 }
+    var radius: Double by circle::radiusAvg
 
     fun update(pressed: Boolean) {
         controller[config.button] = pressed.toInt().toFloat()
-        circle.alpha = if (pressed) 1f else .8f
+        circle.alpha = if (pressed) 1.0 else 0.8
     }
 
     init {
