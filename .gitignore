@@ -1,4 +1,5 @@
 /.gradle
+/.kotlin
 /client/build
 /server/build
 /shared/build
@@ -10,3 +11,5 @@
 /kotlin-js-store
 /deps
 /modules
+null.socket
+null.frame
